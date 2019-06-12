@@ -1,90 +1,40 @@
-# Udacity Items Catalog
+# Udacity Linux / Ubuntu server project for Full Stack course
+This is related to the catalog local server project, completed earlier in the course.
+The aim is to host the catalog app on Amazon's AWS Lightsail virtual private server project, configure the code AND change the database storing the information to a Postgresql database.
 
-The items catalog is the 2nd Project in Udacity's Fullstack Nanodegree.
+The code for the origional catalog app project can be seen on my github [here](https://github.com/dcfwight/catalog.git)
+
+Created by Doug Wight - dcfwight@gmail.com
+
+## IP Address of server:
+[http://34.241.100.161](http://34.241.100.161)
+
+## Summary of software installed
+Apache webserver using Flask framework and bootstrap formatting.  
+Data is saved to a Postgresql database on the server.
+
+## Configurations made
+1. Root access disabled
+1. Postgresql user called 'catalog' added, with password 'REDACTED'
+1. An additional superuser called 'grader' was added to allow Udacity grader to access the server. This user has since been **REMOVED**
+1. Password access to the server disabled
+1. Access limited to private rsa key authentication
+1. Enabled firewall to restrict ports to 2200 for ssh, 80 for webservice, 123 for NTP. All others ports have been blocked.
+1. The ssh port is 2200 - a non-default port. The normal port (22) has been disabled.
+
+## Login instructions
+1. Access the server by using the private rsa key provided
+1. E.g. enter the following command in a terminal to gain access to the ubuntu server:
 
 
-### Features
+`ssh ubuntu@34.21.100.161 -p 2200 -i ~PATH-TO-SAVED-PRIVATE-RSA-KEY`
 
-  - You can signup/signin and create your own favourite movies catalog by creating categories and sub-items inside those categories. 
-  - Only you has the access to modify your list or categories, so don't worry!
-  - You must login or signup to be able to create categories or items, Otherwise you can only view the existing items.
-  
 
-### Tools Needed:
+## Third party resources used
+Many!!! Particularly Udacity forum posts and links from there.
+Some of these included:
 
-Items Catalog uses a number of tools to work properly:
+[Programming knowledge youtube link on configuring Postgresql](https://www.youtube.com/watch?v=-LwI4HMR_Eg)
 
-* [Python](https://www.python.org/downloads/windows/)
-* [Vagrant](https://www.vagrantup.com/)
-* [VirtualBox](https://www.virtualbox.org/)
-* [Git](https://git-scm.com/downloads)
 
-### Installation
-
-1. Install all the above tools.
-
-2. Install all modules needed for the project using command line:
-
-```sh
-pip  install  -r  requirements.txt
-```
-3. Clone this repo by going to your desired location
-* Right click anywhere and choose ```Git bash here ```, Then use the following console commands
-```sh
-$ git clone https://github.com/mohspread/Udacity-Items-Catalog/ catalog
-```
-4. Launch Vagrant with the following commands:
-```sh
-$ vagrant up
-```
-Then,
-```sh
-$ vagrant ssh
-```
-5. Change directory to Vagrant folder
-```sh
-$ cd /vagrant
-```
-6. Setup the database
-```sh
-$ Python database_setup.py
-```
-7. Populate the database with some data
-```sh
-$ Python lotsofmenus.py
-```
-8. Launch main project file:
-```sh
-$ Python project.py
-```
-9. Open the browser and go to http://localhost:5000
-
-### JSON  Endpoints
-
-Returns JSON format of all items and categories together
-```sh
-/catalog/JSON
-```
-
-Returns JSON format of all categories
-```sh
-/categories/JSON
-```
-
-Returns JSON format of all items
-```sh
-/items/JSON
-```
-
-Returns JSON format of the all items inside specific category
-```sh
-/categories/<int:category_id>/menu/JSON
-```
-
-Return JSON format of the a single item inside a category
-```sh
-/categories/<int:category_id>/menu/<int:item_id>/JSON
-```
-
-### Credits
-Created by Mohamed Ahmed for Udacity
+[Digital Ocean set-up tutorial on apache and python for ubuntu](https://www.digitalocean.com/community/tutorials/how-to-set-up-an-apache-mysql-and-python-lamp-server-without-frameworks-on-ubuntu-14-04)
